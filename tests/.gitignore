@@ -2,4 +2,4 @@
 *
 # Except these file
 !.gitignore
-!.run-build.sh
+!run-build.sh
