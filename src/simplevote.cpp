@@ -1,5 +1,6 @@
 #include <simplevote.hpp>
 
+//records message on chain
 ACTION simplevote::sendmsg( name voter, std::string message) {
 
    auto v_itr = _voters.find(voter.value);
@@ -15,6 +16,7 @@ ACTION simplevote::sendmsg( name voter, std::string message) {
 
 }
 
+//add voter / chain
 ACTION simplevote::addvoter( name voter, symbol_code chain) {
 
    auto c_itr = _chains.find(chain.raw());
@@ -34,6 +36,7 @@ ACTION simplevote::addvoter( name voter, symbol_code chain) {
 
 }
 
+//remove voter
 ACTION simplevote::removevoter( name voter) {
 
    auto v_itr = _voters.find(voter.value);
@@ -52,6 +55,7 @@ ACTION simplevote::removevoter( name voter) {
 
 }
 
+//add chain
 ACTION simplevote::addchain(symbol_code chain, name owner) {
 
    require_auth(_self);
@@ -65,6 +69,7 @@ ACTION simplevote::addchain(symbol_code chain, name owner) {
       c.chain = chain;
    });
 
+   //triggers automatic addition of owner as voter
    action act_addvoter(
      permission_level{_self, "active"_n},
      _self, "addvoter"_n,
@@ -74,6 +79,7 @@ ACTION simplevote::addchain(symbol_code chain, name owner) {
 
 }
 
+//change a chain's owner
 ACTION simplevote::changeowner( symbol_code chain, name newowner) {
    
    auto itr = _chains.find(chain.raw());
@@ -90,6 +96,7 @@ ACTION simplevote::changeowner( symbol_code chain, name newowner) {
 
 }
 
+//remove chain and chain voters from contract
 ACTION simplevote::removechain( symbol_code chain) {
 
    auto itr = _chains.find(chain.raw());
@@ -118,6 +125,7 @@ ACTION simplevote::removechain( symbol_code chain) {
 
 #ifdef DEBUG
 
+   //zero out the contract RAM
    ACTION simplevote::clear() {
 
       require_auth(_self);
