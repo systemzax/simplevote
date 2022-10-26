@@ -8,7 +8,7 @@ Simplevote is a simple permissioned messaging system to establish a public recor
 
 Adds a chain with associated owner to the contract. Requires contract authorization.
 
-`cleos push action simplevote changeowner '{"chain":"EOS", "newowner":"mynewaccount"}' -p myaccount;`
+`cleos push action simplevote changeowner '{"chain":"EOS", "newowner":"mynewaccount"}' -p myaccount`
 
 Changes owner account for a given chain. Requires current owner authorization or contract authorization.
 
@@ -16,11 +16,11 @@ Changes owner account for a given chain. Requires current owner authorization or
 
 Removes chain and all associated voters. Requires chain owner authorization or contract authorization.
 
-`cleos push action simplevote addvoter '{"chain":"EOS", "voter":"otheraccount"}' -p myaccount ;`
+`cleos push action simplevote addvoter '{"chain":"EOS", "voter":"otheraccount"}' -p myaccount `
 
 Adds a voter under a given existing chain. Requires chain owner or contract permission.
 
-`cleos push action simplevote removevoter '{"chain":"EOS", "owner":"otheraccount"}' -p myaccount ;`
+`cleos push action simplevote removevoter '{"chain":"EOS", "owner":"otheraccount"}' -p myaccount `
 
 Removes a voter from a given existing chain. Requires chain owner or contract permission.
 
